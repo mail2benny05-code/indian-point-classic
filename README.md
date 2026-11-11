@@ -14,11 +14,16 @@ npm run build
 
 The production files are written to `dist/`. Preview them with `npm run preview`. After the initial load, interactions use bundled JavaScript and browser storage; this project does not include a service worker, so reloading without internet is not guaranteed.
 
-## Running this branch
+## GitHub Pages deployment
 
-Run `npm install` once, then `npm run dev` and open the local URL printed by Vite. For a production check, run `npm run build` followed by `npm run preview`. No GitHub Actions workflow is needed for either command.
+The site must be built before GitHub Pages can display it. The root `index.html` is Vite source and will show a blank page if GitHub Pages serves it directly.
 
-The Vite base path remains configurable if GitHub Pages deployment is added later: `VITE_BASE_PATH=/your-repository-name/ npm run build`.
+1. Run `npm install` and `npm run build:pages` locally. This checks and builds the app under `/indian-point-classic/`, then copies the output into tracked `docs/`.
+2. Commit the `docs/` output with your source changes and push to `main`.
+3. In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` and `/docs`.
+4. Open `https://mail2benny05-code.github.io/indian-point-classic/` after Pages finishes building.
+
+No Actions workflow or token `workflow` scope is needed. For a different repository path, set `PAGES_BASE_PATH=/your-repository-name/` when running `npm run build:pages`. Local development still uses `npm run dev`.
 
 ## Meeting presentation
 
